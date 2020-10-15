@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://www.w3schools.com/xml club.xml" >
+<!-- Define the elements that make up a Member's Name -->
+<!-- Define a Member -->
+<xs:element name="Member">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Name" type="NameType" />
+</xs:sequence>
+<xs:attribute name="id" type="xs:ID" use="required" /> 
+<xs:attribute name="clubs" type="xs:IDREFS" use="optional" /> 
+</xs:complexType>
+</xs:element>
+<xs:complexType name="EmailType" use="optional">
+<xs:sequence>
+<xs:element ref="InternetEmail"/>
+<xs:element minOccurs="0" ref="EmailTypeCode"/>
+<xs:element minOccurs="0" ref="EffectivePeriod"/>
+</xs:sequence>
+</xs:complexType>
+<!-- Define the Club root element -->
+<xs:element name="Club" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element ref="Member" />
+</xs:sequence>
+<xs:attribute name="clubId" type="xs:ID" use="required" />
+</xs:complexType>
+</xs:element>
+<xs:complexType name="NameType" >
+<xs:sequence>
+<xs:element name="FirstName" type="xs:string" />
+<xs:element name="MiddleInitial" type="xs:string" use="optional" />
+<xs:element name="LastName" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
